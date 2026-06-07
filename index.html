@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelby Snap - Web3 Live Stream Hub</title>
+    <!-- Tailwind CSS for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for high-quality dashboard icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-pink-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-slate-900 bg-slate-950/80 backdrop-blur sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-pink-600 to-rose-500 flex items-center justify-center shadow-lg shadow-pink-500/20">
+                <i data-lucide="aperture" class="w-5 h-5 text-white animate-spin-slow"></i>
+            </div>
+            <div>
+                <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">Shelby Snap</span>
+                <span class="text-[10px] block font-mono text-pink-500 tracking-widest uppercase font-bold">Aptos Ecosystem</span>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+            <span id="nav-feed" onclick="switchTab('feed')" class="text-pink-500 transition-colors cursor-pointer">Creative Feed</span>
+            <span id="nav-live" onclick="switchTab('live')" class="hover:text-slate-200 transition-colors cursor-pointer flex items-center space-x-1.5">
+                <span>Live Studio</span>
+                <span id="live-icon-tab" class="w-2 h-2 rounded-full bg-slate-500"></span>
+            </span>
+        </nav>
+
+        <!-- Petra Wallet Action -->
+        <button id="wallet-btn" onclick="connectWallet()" class="flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 shadow-md shadow-slate-950/50 cursor-pointer">
+            <i id="wallet-icon" data-lucide="wallet" class="w-4 h-4 text-slate-400"></i>
+            <span id="wallet-text">Connect Petra Wallet</span>
+        </button>
+    </header>
+
+    <!-- Main Workspace Dashboard -->
+    <main class="max-w-7xl mx-auto px-6 py-10">
+        
+        <!-- Welcome Banner & Dynamic Tabs Controls -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+            <div>
+                <h1 class="text-3xl font-black text-slate-100 tracking-tight sm:text-4xl mb-2">Creator Hub</h1>
+                <p class="text-slate-400 text-sm max-w-xl">Stream live directly onto decentralized infrastructure and permanently archive your content away from AI scraping web-bots.</p>
+            </div>
+            
+            <!-- Tab Buttons -->
+            <div class="bg-slate-900/60 p-1.5 rounded-xl border border-slate-900/80 flex space-x-1 self-start md:self-center">
+                <button id="tab-btn-feed" onclick="switchTab('feed')" class="flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 bg-slate-800 text-white cursor-pointer shadow">
+                    <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                    <span>Feed Gallery</span>
+                </button>
+                <button id="tab-btn-live" onclick="switchTab('live')" class="flex items-center space-x-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 text-slate-400 hover:text-slate-200 cursor-pointer">
+                    <i data-lucide="radio" class="w-4 h-4"></i>
+                    <span>Go Live Studio</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB 1: CREATIVE FEED (GALLERY) -->
+        <div id="feed-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Mock Content 1 -->
+            <div class="bg-slate-900/40 border border-slate-900 rounded-2xl overflow-hidden hover:border-slate-800 transition-all duration-300 group shadow-lg shadow-slate-950/20">
+                <div class="h-48 bg-slate-900 relative flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent z-10"></div>
+                    <i data-lucide="image" class="w-10 h-10 text-slate-800 group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
+                <div class="p-5 border-t border-slate-900/50">
+                    <span class="text-[10px] font-mono text-pink-500 font-bold uppercase tracking-wider">Aptos NFT Art</span>
+                    <h3 class="text-base font-bold text-slate-200 mt-1 mb-3">Cybernetic Landscapes #04</h3>
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Creator: 0x4a2c...e12b</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mock Content 2 -->
+            <div class="bg-slate-900/40 border border-slate-900 rounded-2xl overflow-hidden hover:border-slate-800 transition-all duration-300 group shadow-lg shadow-slate-950/20">
+                <div class="h-48 bg-slate-900 relative flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent z-10"></div>
+                    <i data-lucide="video" class="w-10 h-10 text-slate-800 group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
+                <div class="p-5 border-t border-slate-900/50">
+                    <span class="text-[10px] font-mono text-rose-400 font-bold uppercase tracking-wider">Short Motion VOD</span>
+                    <h3 class="text-base font-bold text-slate-200 mt-1 mb-3">Decentralized Storage Explained</h3>
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
+                        <span>Creator: 0x9b1f...77da</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: LIVE BROADCAST STUDIO (HIDDEN BY DEFAULT) -->
+        <div id="live-container" class="hidden max-w-3xl mx-auto">
+            <div class="bg-slate-900/40 border border-slate-900 rounded-2xl p-8 shadow-xl shadow-slate-950/40 text-center relative overflow-hidden">
+                <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-rose-500"></div>
+                
+                <div class="w-16 h-16 rounded-2xl bg-rose-500/10 text-rose-500 flex items-center justify-center mx-auto mb-6 border border-rose-500/10">
+                    <i data-lucide="tv-2" class="w-8 h-8"></i>
+                </div>
+                
+                <h2 class="text-xl font-bold text-slate-200 mb-2">Shelby Native Live Gateway</h2>
+                <p class="text-slate-400 text-sm max-w-md mx-auto mb-8">Initiate live high-throughput video channels. When turned off, streaming streams are packaged as permanent hot storage items with advanced encryption.</p>
+                
+                <button onclick="protectedAction('Go Live Now')" class="w-full sm:w-auto flex items-center justify-center space-x-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 px-6 py-3 rounded-xl font-semibold transition-all duration-300 scale-100 hover:scale-102 cursor-pointer mx-auto">
+                    <i data-lucide="video" class="w-4 h-4 text-pink-500"></i>
+                    <span>Go Live Now</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- MODAL POPUP SYSTEM OVERLAYS -->
+    <div id="modal-overlay" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        
+        <!-- Card 1: Wallet Connecting Loader -->
+        <div id="modal-connecting" class="bg-slate-900 border border-slate-800 max-w-sm w-full rounded-2xl p-6 text-center shadow-2xl hidden">
+            <div class="relative w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                <div class="absolute inset-0 border-2 border-slate-800 rounded-full"></div>
+                <div class="absolute inset-0 border-2 border-t-pink-500 rounded-full animate-spin"></div>
+            </div>
+            <h3 class="text-base font-bold text-slate-200 mb-1">Connecting Petra Wallet</h3>
+            <p class="text-xs text-slate-400">Approving handshake credentials with Aptos L1 provider...</p>
+        </div>
+
+        <!-- Card 2: Interactive Warnings or Success Feedbacks -->
+        <div id="modal-alert" class="bg-slate-900 border border-slate-800 max-w-sm w-full rounded-2xl p-6 text-center shadow-2xl hidden">
+            <div class="w-12 h-12 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center mx-auto mb-4">
+                <i data-lucide="lock" class="w-6 h-6"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-200 mb-1">Access Restrained</h3>
+            <p id="alert-message" class="text-sm text-slate-400 mb-6">Please connect your Petra Wallet to access creator studio tools.</p>
+            <button onclick="closeModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 py-2.5 rounded-xl text-sm font-semibold transition-colors cursor-pointer">Acknowledge</button>
+        </div>
+    </div>
+
+    <!-- Initialize Lucide Icons Scripts -->
+    <script src="app.js"></script>
+    <script>
+        // Init icons on load
+        lucide.createIcons();
+    </script>
+</body>
+</html>
